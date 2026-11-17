@@ -16,7 +16,7 @@ Hyundai or Kia.
 ## Requirements
 
 - An active Bluelink / Kia Connect / Genesis Connected Services account.
-- [uv](https://docs.astral.sh/uv/) (recommended), or Python 3.12 or later with `pip`.
+- [uv](https://docs.astral.sh/uv/) (recommended), or Python 3.13 or later with `pip`.
 - An MCP client that runs local servers: Claude Desktop, Claude Code, Cursor, VS Code, and others.
 
 Claude on the web and mobile, ChatGPT and Grok cannot start a program on your computer, so they
