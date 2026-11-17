@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bluelink-mcp"
+version = "0.1.0"
+description = "MCP server for Hyundai Bluelink, Kia Connect and Genesis remote vehicle control"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Gowthaman Thangavel", email = "gowthamand7@gmail.com" }]
+requires-python = ">=3.12"
+keywords = ["mcp", "hyundai", "kia", "genesis", "bluelink", "kia-connect", "claude"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Home Automation",
+]
+dependencies = [
+    "mcp>=1.30,<2",
+    "hyundai_kia_connect_api>=5.3.1,<6",
+    "python-dotenv",
+]
+
+[project.urls]
+Homepage = "https://github.com/gowthamand7/bluelink-mcp"
+Issues = "https://github.com/gowthamand7/bluelink-mcp/issues"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio"]
+
+[project.scripts]
+bluelink-mcp = "bluelink_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bluelink_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE", ".env.example"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = [
+    # Raised inside hyundai_kia_connect_api, not this package.
+    "ignore:.*utcfromtimestamp.*:DeprecationWarning",
+]
